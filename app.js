@@ -5,3 +5,14 @@ const attribution = '© OpenStreetMap contributors ';
 
 const tiles = L.tileLayer(titleUrl,{attribution});
 tiles.addTo(map);
+
+fetch("kapilbastu.geojson")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    // use geoJSON
+    L.geoJSON(data, {
+      onEachFeature: onEachFeature,
+    }).addTo(map);
+  });
